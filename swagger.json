@@ -1,0 +1,241 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "description": "this application is provide student information is using go code to define an Rest API",
+    "title": "Student API.",
+    "version": "0.0.1"
+  },
+  "host": "localhost:3000",
+  "paths": {
+    "/students": {
+      "get": {
+        "description": "Returns existing student",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Student"
+        ],
+        "summary": "Get Student",
+        "operationId": "getAll",
+        "responses": {
+          "200": {
+            "description": "Student response",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Returns new Student",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Student"
+        ],
+        "summary": "Add new Student",
+        "operationId": "createNewStudent",
+        "parameters": [
+          {
+            "description": "add Student data",
+            "name": "student",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "New Student created",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      }
+    },
+    "/students/{id}": {
+      "get": {
+        "description": "Returns existing Student filtered by id",
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Student"
+        ],
+        "summary": "Get Student",
+        "operationId": "getById",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student response",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "replace existing Student filtered by id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Student"
+        ],
+        "summary": "replace Student",
+        "operationId": "replaceStudent_Put",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "add student data",
+            "name": "student",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student response",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete existing Student filtered by id",
+        "tags": [
+          "Student"
+        ],
+        "summary": "Delete  student",
+        "operationId": "deleteStudent",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete Student sucessfully"
+          }
+        }
+      },
+      "patch": {
+        "description": "Update existing Student filtered by id",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "Student"
+        ],
+        "summary": "Update Student",
+        "operationId": "updateStudent_Patch",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "description": "add student data",
+            "name": "student",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Student response",
+            "schema": {
+              "$ref": "#/definitions/Student"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ObjectID": {
+      "type": "array",
+      "title": "ObjectID is the BSON ObjectID type.",
+      "items": {
+        "type": "integer",
+        "format": "uint8"
+      },
+      "x-go-package": "go.mongodb.org/mongo-driver/bson/primitive"
+    },
+    "Student": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "$ref": "#/definitions/ObjectID"
+        },
+        "city": {
+          "type": "string",
+          "x-go-name": "City"
+        },
+        "country": {
+          "type": "string",
+          "x-go-name": "Country"
+        },
+        "course": {
+          "type": "string",
+          "x-go-name": "Course"
+        },
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        },
+        "year_of_admission": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "YearOfAdmission"
+        }
+      },
+      "x-go-package": "AssDeploy/model"
+    }
+  }
+}
